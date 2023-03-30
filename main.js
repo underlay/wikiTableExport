@@ -12,7 +12,7 @@ const ulCollectionUrl = `https://www.underlay.org/api/${ulCollection}/download?v
 /* ------------------------------- */
 
 /* Set edit summary */
-const editsummary = `Updated from ${ulCollectionUrl}`
+const editsummary = `Updated from ${ulCollectionUrl}`;
 
 /* Load the Underlay collection data and parse it into Wikitable formatting */
 const parseJson = async () => {
