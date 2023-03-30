@@ -10,5 +10,5 @@ npm install
 ```
 
 - Update the .env file with your wiki login credentials.
-- Verify the `ulCollection`, `ulCollectionVersion`, and `wikiPageDestination` values at the top of `main.js`
-- Run `npm start`# wikiTableExport
+- Verify the `ulCollection`, `ulCollectionVersion`, and `wikiPageDestination` parameters at the top of `main.js`
+- Run `npm start`
