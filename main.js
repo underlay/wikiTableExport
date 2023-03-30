@@ -16,19 +16,25 @@ const parseJson = async () => {
 	const ulCollectionUrl = `https://www.underlay.org/api/${ulCollection}/download?version=${ulCollectionVersion}`;
 
 	/* Fetch UL collection data */
-	const response = await fetch(dataUrl, { json: true });
+	const response = await fetch(ulCollectionUrl, { json: true });
 	const body = await response.text();
 	const data = JSON.parse(body);
 
 	/* Iterate over each Source and format it into Wikitable formatting */
 	const sources = data.data.Source;
 	const tableText = sources.reduce((prev, curr) => {
+		const split = curr.discussionForum.split('(');
+		const forumPrefix = split[0];
+		const forumSuffix = split[1];
+
+		const discussionForumText =
+			split.length > 1 ? `[${forumSuffix} ${forumPrefix.trim()}]` : forumPrefix;
 		return `${prev}
 |-
 |${curr.type}
 |${curr.name}
 |${curr.assessment}		
-|${curr.discussionForum}
+|${discussionForumText}
 |${curr.discussionLastDate}
 |
 |[${curr.url}]
