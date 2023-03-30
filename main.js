@@ -8,13 +8,14 @@ dotenv.config();
 const ulCollection = 'reliable-sources/vaccine-topics-xmsdk95byp';
 const ulCollectionVersion = '0.0.2';
 const wikiPageDestination = 'Wikipedia:Vaccine safety/Sources/Assessments';
+const ulCollectionUrl = `https://www.underlay.org/api/${ulCollection}/download?version=${ulCollectionVersion}`;
 /* ------------------------------- */
+
+/* Set edit summary */
+const editsummary = `Updated from ${ulCollectionUrl}`;
 
 /* Load the Underlay collection data and parse it into Wikitable formatting */
 const parseJson = async () => {
-	/* Set UL collection parameters */
-	const ulCollectionUrl = `https://www.underlay.org/api/${ulCollection}/download?version=${ulCollectionVersion}`;
-
 	/* Fetch UL collection data */
 	const response = await fetch(ulCollectionUrl, { json: true });
 	const body = await response.text();
@@ -79,7 +80,7 @@ const run = async () => {
 ${dataValues}
 |}`;
 		},
-		{ bot: 1 }
+		{ bot: 1, summary: `${editsummary}` }
 	);
 };
 
